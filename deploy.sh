@@ -40,12 +40,12 @@ echo "ℹ︎ ASSETS_DIR is $ASSETS_DIR"
 
 if [[ -z "$BUILD_DIR" ]] || [[ $BUILD_DIR == "./" ]]; then
 	BUILD_DIR=false
-elif [[ $BUILD_DIR == ./* ]]; then 
+elif [[ $BUILD_DIR == ./* ]]; then
 	BUILD_DIR=${BUILD_DIR:2}
 fi
 
 if [[ "$BUILD_DIR" != false ]]; then
-	if [[ $BUILD_DIR != /* ]]; then 
+	if [[ $BUILD_DIR != /* ]]; then
 		BUILD_DIR="${GITHUB_WORKSPACE%/}/${BUILD_DIR%/}"
 	fi
 	echo "ℹ︎ BUILD_DIR is $BUILD_DIR"
@@ -153,7 +153,7 @@ svn update
 svn status
 
 echo "➤ Committing files..."
-svn commit -m "Update to version $VERSION from GitHub" --no-auth-cache --non-interactive  --username "$SVN_USERNAME" --password "$SVN_PASSWORD"
+svn commit -m "$SLUG is updated to version $VERSION from GitHub" --no-auth-cache --non-interactive  --username "$SVN_USERNAME" --password "$SVN_PASSWORD"
 
 if $INPUT_GENERATE_ZIP; then
   echo "Generating zip file..."
